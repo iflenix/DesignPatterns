@@ -1,0 +1,67 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.storm.designpatterns.DecoratorFragment"
+    android:id="@+id/decoratorFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|top"
+        android:id="@+id/beverageType"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step1: Select Beverage"
+            android:textColor="@android:color/primary_text_light"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Espresso"
+            android:id="@+id/rbEspresso"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="House Blend"
+            android:id="@+id/rbHouseBlend"
+            android:checked="false" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Step 2: Select Condiments"
+        android:id="@+id/textView2"
+        android:textColor="@android:color/primary_text_light"
+            android:gravity="bottom"
+            />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Whip"
+            android:id="@+id/swWhip"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soy"
+            android:id="@+id/swSoy"
+            android:checked="false" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mocha"
+            android:id="@+id/swMocha"
+            android:checked="false" />
+
+
+    </RadioGroup>
+
+</FrameLayout>
