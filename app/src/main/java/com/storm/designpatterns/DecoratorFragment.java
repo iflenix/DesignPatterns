@@ -2,7 +2,7 @@ package com.storm.designpatterns;
 
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,100 +62,101 @@ public class DecoratorFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_decorator, container, false);
     }
 
-    public abstract class Beverage {
-        String description = "Unknown Beverage";
 
-        public String getDescription() {
-            return description;
-        }
+}
 
-        public abstract double cost ();
+abstract class Beverage {
+    String description = "Unknown com.storm.designpatterns.Beverage";
+
+    public String getDescription() {
+        return description;
     }
 
-    public abstract class CondimentDecorator extends Beverage{
-        @Override
-        public abstract String getDescription() ;
+    public abstract double cost();
+}
+
+abstract class CondimentDecorator extends Beverage {
+    @Override
+    public abstract String getDescription();
+}
+
+
+class Espresso extends Beverage {
+
+    public Espresso() {
+        description = "Espresso";
     }
 
-    public class Espresso extends Beverage {
-
-        public Espresso() {
-            description = "Espresso";
-        }
-
-        @Override
-        public double cost() {
-            return 1.99;
-        }
+    @Override
+    public double cost() {
+        return 1.99;
     }
-    public class HouseBlend extends Beverage {
+}
 
-        public HouseBlend() {
-            description = "House Blend Coffee";
-        }
+class HouseBlend extends Beverage {
 
-        @Override
-        public double cost() {
-            return .89;
-        }
+    public HouseBlend() {
+        description = "House Blend Coffee";
     }
 
-    public class Mocha extends CondimentDecorator {
-        Beverage beverage;
+    @Override
+    public double cost() {
+        return .89;
+    }
+}
 
-        public Mocha(Beverage beverage) {
-            this.beverage = beverage;
-        }
+class Mocha extends CondimentDecorator {
+    Beverage beverage;
 
-        @Override
-
-        public String getDescription() {
-            return beverage.getDescription() + ", Mocha";
-        }
-
-        @Override
-        public double cost() {
-            return beverage.cost() + .20;
-        }
+    public Mocha(Beverage beverage) {
+        this.beverage = beverage;
     }
 
+    @Override
 
-        public class Whip extends CondimentDecorator {
-        Beverage beverage;
-
-        public Whip(Beverage beverage) {
-            this.beverage = beverage;
-        }
-
-        @Override
-        public String getDescription() {
-            return beverage.getDescription() + ", Whip";
-        }
-
-        @Override
-        public double cost() {
-            return beverage.cost() + .10;
-        }
+    public String getDescription() {
+        return beverage.getDescription() + ", Mocha";
     }
 
-    public class Soy extends CondimentDecorator {
-        Beverage beverage;
+    @Override
+    public double cost() {
+        return beverage.cost() + .20;
+    }
+}
 
-        public Soy(Beverage beverage) {
-            this.beverage = beverage;
-        }
 
-        @Override
-        public String getDescription() {
-            return beverage.getDescription() + ", Soy";
-        }
+class Whip extends CondimentDecorator {
+    Beverage beverage;
 
-        @Override
-        public double cost() {
-            return beverage.cost() + .15;
-        }
+    public Whip(Beverage beverage) {
+        this.beverage = beverage;
     }
 
+    @Override
+    public String getDescription() {
+        return beverage.getDescription() + ", Whip";
+    }
 
+    @Override
+    public double cost() {
+        return beverage.cost() + .10;
+    }
+}
 
+class Soy extends CondimentDecorator {
+    Beverage beverage;
+
+    public Soy(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
+    @Override
+    public String getDescription() {
+        return beverage.getDescription() + ", Soy";
+    }
+
+    @Override
+    public double cost() {
+        return beverage.cost() + .15;
+    }
 }

@@ -1,13 +1,15 @@
 package com.storm.designpatterns;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.support.v4.app.*;
+import android.widget.RadioGroup;
+import android.widget.Switch;
+import android.widget.Toast;
 
 
 public class PatternsActivity extends AppCompatActivity {
@@ -16,6 +18,12 @@ public class PatternsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patterns);
+
+        PatternsActivityFragment activityFragment = new PatternsActivityFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.patternsMainFrame, activityFragment)
+                .commit();
+
     }
 
 
@@ -42,12 +50,38 @@ public class PatternsActivity extends AppCompatActivity {
     }
 
     public void onDecorButtonClick(View view) {
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(fm.findFragmentById(R.id.decoratorFragment),"DECORATOR_FRAGMENT");
+        DecoratorFragment decoratorFragment = new DecoratorFragment();
+        ft.replace(R.id.patternsMainFrame, decoratorFragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.addToBackStack(null);
         //ft.show(fm.findFragmentById(R.id.decoratorFragment));
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-
         ft.commit();
+    }
+
+    public void onGetCostClick(View view) {
+        double cost;
+        String description = "";
+
+        Beverage beverage = null;
+
+        RadioGroup rg = (RadioGroup) findViewById(R.id.beverageType);
+        switch (rg.getCheckedRadioButtonId()) {
+            case R.id.rbEspresso:
+                beverage = new Espresso();
+                break;
+            case R.id.rbHouseBlend:
+                beverage = new HouseBlend();
+        }
+
+        if (((Switch)(findViewById(R.id.swWhip))).isChecked()) {
+            beverage = new Whip(beverage);
+        }
+
+        String order = "You ordered: " + beverage.getDescription() + ", which costs: " + Double.toString(beverage.cost());
+
+        Toast.makeText(this,order,Toast.LENGTH_SHORT).show();
+
     }
 }
