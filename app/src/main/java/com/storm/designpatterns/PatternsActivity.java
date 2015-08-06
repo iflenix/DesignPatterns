@@ -1,12 +1,15 @@
 package com.storm.designpatterns;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.support.v4.app.*;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -58,6 +61,7 @@ public class PatternsActivity extends AppCompatActivity {
         ft.addToBackStack(null);
         //ft.show(fm.findFragmentById(R.id.decoratorFragment));
         ft.commit();
+
     }
 
     public void onGetCostClick(View view) {
@@ -79,9 +83,35 @@ public class PatternsActivity extends AppCompatActivity {
             beverage = new Whip(beverage);
         }
 
+        if (((Switch)(findViewById(R.id.swSoy))).isChecked()) {
+            beverage = new Soy(beverage);
+        }
+
+        if (((Switch)(findViewById(R.id.swMocha))).isChecked()) {
+            beverage = new Mocha(beverage);
+        }
         String order = "You ordered: " + beverage.getDescription() + ", which costs: " + Double.toString(beverage.cost());
 
-        Toast.makeText(this,order,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,order,Toast.LENGTH_SHORT).show();
+
+
+        Intent intent = new Intent(this,MyService.class);
+        sendBroadcast(intent);
+
+
+    }
+
+    public void startServiceButtonClick(View view) {
+
+        Intent intent = new Intent(this,MyService.class);
+        startService(intent);
+
+
+        int firstDigit,secondDigit;
+
+        EditText first = (EditText) findViewById(R.id.edFirstDigit);
+        firstDigit = Integer.getInteger(first.getText().toString());
+        secondDigit = Integer.getInteger(((EditText) findViewById(R.id.etSecondDigit)).getText().toString());
 
     }
 }

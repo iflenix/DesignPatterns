@@ -1,11 +1,16 @@
 package com.storm.designpatterns;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 /**
@@ -22,6 +27,7 @@ public class DecoratorFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private BroadcastReceiver myReceiver;
 
 
     /**
@@ -50,9 +56,26 @@ public class DecoratorFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            int[] array = new int[]{2,5,8,9};
+                    mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        myReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Toast.makeText(context, "received", Toast.LENGTH_SHORT).show();
+
+            }
+        };
+
+        getActivity().registerReceiver(myReceiver, new IntentFilter("com.storm.ACTION"));
+    }
+
+    @Override
+    public void onDestroy() {
+        getActivity().unregisterReceiver(myReceiver);
+        super.onDestroy();
     }
 
     @Override
@@ -66,7 +89,7 @@ public class DecoratorFragment extends Fragment {
 }
 
 abstract class Beverage {
-    String description = "Unknown com.storm.designpatterns.Beverage";
+    String description = "Unknown Beverage";
 
     public String getDescription() {
         return description;

@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.storm.designpatterns" >
 
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+
+    <permission
+        android:name="com.storm.designpatterns.ANDROID_PERMISSION"
+        android:label="My permission"
+        android:protectionLevel="signature" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter android:label="com.storm.patterns.START_SERVICE">
+                <action android:name="com.storm.patterns.START_SERVICE"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -20,5 +20,14 @@
         android:layout_alignParentStart="true"
         android:onClick="onDecorButtonClick"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AIDL Test"
+        android:id="@+id/button"
+        android:layout_below="@+id/decorator_button"
+        android:layout_alignParentStart="true"
+        android:onClick="startServiceButtonClick"/>
+
 
 </RelativeLayout>
