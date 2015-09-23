@@ -79,39 +79,54 @@ public class PatternsActivity extends AppCompatActivity {
                 beverage = new HouseBlend();
         }
 
-        if (((Switch)(findViewById(R.id.swWhip))).isChecked()) {
+        if (((Switch) (findViewById(R.id.swWhip))).isChecked()) {
             beverage = new Whip(beverage);
         }
 
-        if (((Switch)(findViewById(R.id.swSoy))).isChecked()) {
+        if (((Switch) (findViewById(R.id.swSoy))).isChecked()) {
             beverage = new Soy(beverage);
         }
 
-        if (((Switch)(findViewById(R.id.swMocha))).isChecked()) {
+        if (((Switch) (findViewById(R.id.swMocha))).isChecked()) {
             beverage = new Mocha(beverage);
         }
-        String order = "You ordered: " + beverage.getDescription() + ", which costs: " + Double.toString(beverage.cost());
 
-        //Toast.makeText(this,order,Toast.LENGTH_SHORT).show();
+        if (beverage != null) {
+            String order = "You ordered: " + beverage.getDescription() + ", which costs: " + Double.toString(beverage.cost());
+            Toast.makeText(this,order,Toast.LENGTH_SHORT).show();
+        }
 
-
-        Intent intent = new Intent(this,MyService.class);
+        Intent intent = new Intent(this, MyService.class);
         sendBroadcast(intent);
-
 
     }
 
     public void startServiceButtonClick(View view) {
 
-        Intent intent = new Intent(this,MyService.class);
+        Intent intent = new Intent(this, MyService.class);
         startService(intent);
 
-
-        int firstDigit,secondDigit;
+        int firstDigit, secondDigit;
 
         EditText first = (EditText) findViewById(R.id.edFirstDigit);
         firstDigit = Integer.getInteger(first.getText().toString());
         secondDigit = Integer.getInteger(((EditText) findViewById(R.id.etSecondDigit)).getText().toString());
+
+    }
+
+    public void onObserverButtonClick(View view) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ObserverFragment observerFragment = new ObserverFragment();
+        ft.replace(R.id.patternsMainFrame, observerFragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.addToBackStack(null);
+        //ft.show(fm.findFragmentById(R.id.decoratorFragment));
+        ft.commit();
+
+    }
+
+    public void onChangeWeatherClick(View view) {
 
     }
 }
