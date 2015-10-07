@@ -126,7 +126,27 @@ public class PatternsActivity extends AppCompatActivity {
 
     }
 
-    public void onChangeWeatherClick(View view) {
 
+    public void onSingletonButtonClick(View view) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        SingletonFragment singletonFragment = new SingletonFragment();
+        ft.replace(R.id.patternsMainFrame, singletonFragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.addToBackStack(null);
+        //ft.show(fm.findFragmentById(R.id.decoratorFragment));
+        ft.commit();
+    }
+
+    public void onCommandButtonClick(View view) {
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        CommandFragment commandFragment = new CommandFragment();
+        ft.replace(R.id.patternsMainFrame, commandFragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.addToBackStack(null);
+        //ft.show(fm.findFragmentById(R.id.decoratorFragment));
+        ft.commit();
     }
 }

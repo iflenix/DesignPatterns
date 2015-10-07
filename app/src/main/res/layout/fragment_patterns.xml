@@ -23,6 +23,15 @@
         android:layout_below="@+id/decorator_button"
         android:layout_alignParentStart="true"
         android:onClick="startServiceButtonClick"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AIDL Test"
+        android:id="@+id/buttonTest"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true"
+        android:onClick="onTestClick"/>
+
 
     <Button
         android:layout_width="wrap_content"
@@ -32,6 +41,24 @@
         android:layout_below="@+id/button"
         android:layout_alignParentStart="true"
         android:onClick="onObserverButtonClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Одиночка"
+        android:id="@+id/singleton_button"
+        android:onClick="onSingletonButtonClick"
+        android:layout_below="@+id/buttonTest"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Команда"
+        android:id="@+id/command_button"
+        android:onClick="onCommandButtonClick"
+        android:layout_below="@+id/singleton_button"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

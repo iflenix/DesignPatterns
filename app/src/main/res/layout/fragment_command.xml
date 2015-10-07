@@ -1,0 +1,79 @@
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.storm.designpatterns.CommandFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Living room light"
+        android:id="@+id/livingRoomLightSwitch"
+        android:layout_gravity="left|top"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kitchen Light"
+        android:id="@+id/kitchenLightSw"
+        android:layout_below="@+id/livingRoomLightSwitch"
+        android:layout_alignEnd="@+id/livingRoomLightSwitch"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Liv Room Fan"
+        android:id="@+id/livRoomFanSw"
+        android:layout_below="@+id/kitchenLightSw"
+        android:layout_alignEnd="@+id/kitchenLightSw"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Garage Door"
+        android:id="@+id/garageDoorSw"
+        android:layout_below="@+id/livRoomFanSw"
+        android:layout_alignEnd="@+id/livRoomFanSw"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stereo"
+        android:id="@+id/stereoSw"
+        android:layout_below="@+id/garageDoorSw"
+        android:layout_alignEnd="@+id/garageDoorSw"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Lights"
+        android:id="@+id/allLightsSw"
+        android:layout_below="@+id/stereoSw"
+        android:layout_alignEnd="@+id/stereoSw"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PartyMode"
+        android:id="@+id/peartyModeSw"
+        android:layout_below="@+id/allLightsSw"
+        android:layout_alignEnd="@+id/allLightsSw"
+        android:checked="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Undo&amp;AdapterPatternTest"
+        android:id="@+id/undoButton"
+        android:layout_below="@+id/peartyModeSw"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
